@@ -35,15 +35,21 @@ public class Presidents {
 
     // user input method
     public int getYear() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Please input a year (1918-2021): ");
-        int yearEntered = scan.nextInt();
+        try {
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Please input a year (1918-2021): ");
+            int yearEntered = scan.nextInt();
 
-        if (yearEntered < 1918 || yearEntered > 2021) {
+            if (yearEntered < 1918 || yearEntered > 2021) {
+                System.out.println("Wrong entry!");
+                System.exit(0);
+            }
+            return yearEntered;
+        } catch(InputMismatchException e) {
             System.out.println("Wrong entry!");
             System.exit(0);
+            return -1;
         }
-        return yearEntered;
     }
 
     public static void main(String[] args) {

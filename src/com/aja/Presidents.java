@@ -5,7 +5,7 @@ import java.util.*;
 public class Presidents {
 
     // fill up dictionary method
-    public Map<Integer, String> fillDictionary() {
+    public Map<Integer, String> getPresidentsMap() {
         Map<Integer, String> presidents = new LinkedHashMap<>();
         presidents.put(1918, "Tomas Garrigue Masaryk");
         presidents.put(1935, "Edvard Benes");
@@ -22,19 +22,19 @@ public class Presidents {
         return presidents;
     }
 
-    public void showResult(Map<Integer, String> presidents, int year) {
-        int lastK = -1;
-        for (int k : presidents.keySet()) {
-            int currentK = k;
-            if (year >= lastK && year < k) {
-                System.out.println("In the year " + year + ", the president was " + presidents.get(lastK) + " (since " + lastK + ").");
+    public String showResult(Map<Integer, String> presidents, int year) {
+        int lastPass = -1;
+        for (int currentPass : presidents.keySet()) {
+            if (year >= lastPass && year < currentPass) {
+                return "In the year " + year + ", the president was " + presidents.get(lastPass) + " (since " + lastPass + ").";
             }
-            lastK = currentK;
+            lastPass = currentPass;
         }
+        return "";
     }
 
     // user input method
-    public int getYear() {
+    public int getYearAndTest() {
         try {
             Scanner scan = new Scanner(System.in);
             System.out.print("Please input a year (1918-2021): ");
@@ -53,13 +53,11 @@ public class Presidents {
     }
 
     public static void main(String[] args) {
-        Presidents myClassInstantion = new Presidents();
+        System.out.println("Czech(oslovak) Presidents\n----------------");
+        Presidents myClassInstantion = new Presidents();  // instantiate class
+        int yearEntered = myClassInstantion.getYearAndTest();  // get year number and test if input is ok
 
-        int yearEntered = myClassInstantion.getYear();
-
-        Map<Integer, String> presidents = myClassInstantion.fillDictionary();
-
-        myClassInstantion.showResult(presidents, yearEntered);
-
+        Map<Integer, String> presidents = myClassInstantion.getPresidentsMap();  // get Map array
+        System.out.println(myClassInstantion.showResult(presidents, yearEntered));  // show result
     }
 }

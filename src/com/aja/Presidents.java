@@ -53,7 +53,7 @@ public class Presidents {
     }
 
     public static void main(String[] args) {
-        System.out.println("Czech(oslovak) Presidents\n----------------");
+        System.out.println("Czech(oslovak) Presidents\n================");
         Presidents myClassInstantion = new Presidents();  // instantiate class
         int yearEntered = myClassInstantion.getYearAndTest();  // get year number and test if input is ok
 
